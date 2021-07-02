@@ -80,7 +80,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 // TODO Move to config
 //#define LED_LAYER_FUNCTION
 
-void change_layer_leds(uint8_t on_index, uint8_t on_modifier){
+static void change_layer_leds(uint8_t on_index, uint8_t on_modifier){
 #ifdef LED_LAYER_FUNCTION
                              //  F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9, F10, F11, F12
     const uint8_t keys[] = {   6,  12,  18,  23,  28,  34,  39,  44,  50,  56,  61,  66};
@@ -124,7 +124,7 @@ void rgb_matrix_indicators_user(void) {
             break;
         case 1:
             // mod layer for base layer
-            change_layer_leds(1, 1);
+            change_layer_leds(1, 0);
             break;
         default:
             break;
