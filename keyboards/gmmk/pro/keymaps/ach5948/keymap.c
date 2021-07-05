@@ -43,27 +43,60 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      // Tab      Q        W        E        R        T        Y        U        I        O        P        [        ]        \                  PgUp
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS,           KC_PGUP,
      // Caps     A        S        D        F        G        H        J        K        L        ;        "                 Enter              PgDn
-        MO(1),   KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,          KC_ENT,            KC_PGDN,
+        MO(2),   KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,          KC_ENT,            KC_PGDN,
      // Sh_L              Z        X        C        V        B        N        M        ,        .        ?                 Sh_R     Up        End
         KC_LSFT,          KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,          KC_RSFT, KC_UP,    KC_END,
      // Ct_L     Win_L    Alt_L                               SPACE                               Alt_R    FN       Ct_R     Left     Down      Right
-        KC_LCTL, KC_LGUI, KC_LALT,                            KC_SPC,                             KC_RALT, MO(1),   KC_RCTL, KC_LEFT, KC_DOWN,  KC_RGHT
+        KC_LCTL, KC_LGUI, KC_LALT,                            KC_SPC,                             KC_RALT, MO(2),   KC_RCTL, KC_LEFT, KC_DOWN,  KC_RGHT
+    ),
+
+    // Game Layer
+    [1] = LAYOUT(
+     // ESC      F1       F2       F3       F4       F5       F6       F7       F8       F9       F10      F11      F12      Prt                Rotary(Mute)
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,           _______,
+     // ~        1        2        3        4        5        6        7        8        9        0         -       (=)      BackSpc            Del
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,           _______,
+     // Tab      Q        W        E        R        T        Y        U        I        O        P        [        ]        \                  PgUp
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,           _______,
+     // Caps     A        S        D        F        G        H        J        K        L        ;        "                 Enter              PgDn
+        KC_CAPS, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,           _______,
+     // Sh_L              Z        X        C        V        B        N        M        ,        .        ?                 Sh_R     Up        End
+        _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______,  _______,
+     // Ct_L     Win_L    Alt_L                               SPACE                               Alt_R    FN       Ct_R     Left     Down      Right
+        _______, KC_NO, _______,                              _______,                            _______, MO(3),   _______, _______, _______, _______
     ),
 
     // Base Mod Layer
-    [1] = LAYOUT(
+    [2] = LAYOUT(
      // ESC      F1       F2       F3       F4       F5       F6       F7       F8       F9       F10      F11      F12      Prt                Rotary(Mute)
         _______, KC_MUTE, KC_VOLD, KC_VOLU, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_PSCR,           _______,
      // ~        1        2        3        4        5        6        7        8        9        0         -       (=)      BackSpc            Del
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_CALC,           _______,
      // Tab      Q        W        E        R        T        Y        U        I        O        P        [        ]        \                  PgUp
-        _______, RGB_TOG, RGB_HUI, RGB_MOD, RESET,   RGB_TOG, _______, _______, _______, _______, _______, _______, _______, _______,           _______,
+        _______, RGB_TOG, RGB_HUI, RGB_MOD, RESET,   RGB_TOG, _______, _______, _______, _______, _______, _______, _______, RESET,             TO(1),
      // Caps     A        S        D        F        G        H        J        K        L        ;        "                 Enter              PgDn
         _______, RGB_SAD, RGB_HUD, RGB_SAI, _______, _______, _______, _______, _______, _______, _______, _______,          _______,           _______,
      // Sh_L              Z        X        C        V        B        N        M        ,        .        ?                 Sh_R     Up        End
         _______,          _______, _______, _______, _______, _______, KC_MPRV, KC_MNXT, _______, _______, _______,          _______, RGB_VAI,  _______,
      // Ct_L     Win_L    Alt_L                               SPACE                               Alt_R    FN       Ct_R     Left     Down      Right
-        _______, _______, _______,                            KC_MPLY,                            _______, _______, _______, RGB_SPD, RGB_VAD, RGB_SPI
+        _______, _______, _______,                            KC_MPLY,                            _______, _______, _______, RGB_SPD, RGB_VAD,  RGB_SPI
+    ),
+
+
+    // Game Mod Layer
+    [3] = LAYOUT(
+     // ESC      F1       F2       F3       F4       F5       F6       F7       F8       F9       F10      F11      F12      Prt                Rotary(Mute)
+        _______, KC_MUTE, KC_VOLD, KC_VOLU, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_PSCR,           _______,
+     // ~        1        2        3        4        5        6        7        8        9        0         -       (=)      BackSpc            Del
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,           _______,
+     // Tab      Q        W        E        R        T        Y        U        I        O        P        [        ]        \                  PgUp
+        _______, RGB_TOG, RGB_HUI, RGB_MOD, _______, RGB_TOG, _______, _______, _______, _______, _______, _______, _______, RESET,             _______,
+     // Caps     A        S        D        F        G        H        J        K        L        ;        "                 Enter              PgDn
+        _______, RGB_SAD, RGB_HUD, RGB_SAI, _______, _______, _______, _______, _______, _______, _______, _______,          _______,           TO(0),
+     // Sh_L              Z        X        C        V        B        N        M        ,        .        ?                 Sh_R     Up        End
+        _______,          _______, _______, _______, _______, _______, KC_MPRV, KC_MNXT, _______, _______, _______,          _______, RGB_VAI,  _______,
+     // Ct_L     Win_L    Alt_L                               SPACE                               Alt_R    FN       Ct_R     Left     Down      Right
+        _______, KC_NO,   _______,                            KC_MPLY,                            _______, _______, _______, RGB_SPD, RGB_VAD,  RGB_SPI
     ),
 };
 
@@ -117,6 +150,12 @@ static void change_layer_leds(uint8_t on_index, uint8_t on_modifier){
 }
 
 void rgb_matrix_indicators_user(void) {
+    if (host_keyboard_led_state().caps_lock) {
+        // Set Caps Lock light to full bright white
+        rgb_matrix_set_color(3, 255, 255, 255);
+    } else if (!rgb_matrix_config.enable) {
+        rgb_matrix_set_color(3, 0, 0, 0);
+    }
     switch (biton32(layer_state)) {
         case 0:
             // base layer
@@ -124,7 +163,15 @@ void rgb_matrix_indicators_user(void) {
             break;
         case 1:
             // mod layer for base layer
+            change_layer_leds(2, 0);
+            break;
+        case 2:
+            // mod layer for base layer
             change_layer_leds(1, 0);
+            break;
+        case 3:
+            // mod layer for base layer
+            change_layer_leds(2, 0);
             break;
         default:
             break;
