@@ -99,3 +99,7 @@ enum keyboard_keycodes {
     { K40, K41, K42, K43, XXX }, \
     { K50, K51, K52, K53, XXX }, \
 }
+
+#ifdef OLED_ENABLE
+bool draw_puca_logo(void);
+#endif

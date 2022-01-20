@@ -43,8 +43,8 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
 // OLED
 #ifdef OLED_ENABLE
 __attribute__((weak)) oled_rotation_t oled_init_user(oled_rotation_t rotation) { return OLED_ROTATION_270; }
-bool oled_task_kb(void) {
-    if (!oled_task_user()) { return false; }
+
+bool draw_puca_logo(void) {
 // WPM-responsive animation stuff here
 #    define IDLE_FRAMES 2
 #    define ANIM_FRAME_DURATION 400  // how long each frame lasts in ms
@@ -53,7 +53,7 @@ bool oled_task_kb(void) {
     static uint32_t anim_timer         = 0;
     static uint8_t  current_idle_frame = 0;
     // Credit to u/Pop-X- for the initial code. You can find his commit here https://github.com/qmk/qmk_firmware/pull/9264/files#diff-303f6e3a7a5ee54be0a9a13630842956R196-R333.
-        static const char PROGMEM idle[IDLE_FRAMES][ANIM_SIZE] = {{
+    static const char PROGMEM idle[IDLE_FRAMES][ANIM_SIZE] = {{
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
         0x00, 0x00, 0x00, 0x00, 0x80, 0x80, 0x60, 0x60, 0x18, 0x18, 0x06, 0x06, 0x06, 0x06, 0x06, 0x06,
@@ -132,10 +132,18 @@ bool oled_task_kb(void) {
 
     oled_set_cursor(0, 6);
     oled_write_P(PSTR("PUCA\nPAD\n"), false);
-    oled_write_P(PSTR("-----\n"), false);
+    // Line is automatically incremented after 5 characters
+    oled_write_P(PSTR("-----"), false);
+    return true;
+}
+
+bool oled_task_kb(void) {
+    if (!oled_task_user()) { return false; }
+    if (!draw_puca_logo()) { return false; }
+
     // Host Keyboard Layer Status
-    oled_write_P(PSTR("MODE\n"), false);
-    oled_write_P(PSTR("\n"), false);
+    // Extra line after logo and Mode
+    oled_write_P(PSTR("\nMODE\n\n"), false);
     switch (get_highest_layer(layer_state)) {
         case 0:
             oled_write_P(PSTR("BASE\n"), false);
